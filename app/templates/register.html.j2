@@ -1,0 +1,49 @@
+{% extends 'base.html.j2' %}
+{% block title %}
+Register
+{% endblock %}
+{% block content%}
+<h1>
+{% if current_user.is_authenticated %}
+    Edit Profile
+{% else %}
+    Register
+{% endif %}
+</h1>
+<small style="color:red;">{{error}}</small>
+<form action="{{url_for('auth.edit_profile') if current_user.is_authenticated else url_for('auth.register')}}" method="POST">
+{{ form.hidden_tag() }}
+
+{{form.first_name.label(class="form-label")}}
+{{form.first_name(class="form-control", value=current_user.first_name)}}
+
+
+{{form.last_name.label(class="form-label")}}
+{{form.last_name(class="form-control", value=current_user.last_name)}}
+
+
+{{form.email.label(class="form-label")}}
+{{form.email(class="form-control", value=current_user.email)}}
+
+{% for error in form.email.errors %}
+    <small style="color:red;">{{error}}</small><br>
+{% endfor %}
+
+
+{{form.password.label(class="form-label")}}
+{{form.password(class="form-control")}}
+
+
+{{form.confirm_password.label(class="form-label")}}
+{{form.confirm_password(class="form-control")}}
+
+
+{% for error in form.password.errors %}
+    <small style="color:red;">{{error}}</small><br>
+{% endfor %}
+
+
+{{form.submit(class='btn btn-primary')}}
+</form>
+{% endblock %}
+
