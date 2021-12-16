@@ -34,4 +34,5 @@ class EditProfileForm(FlaskForm):
 
 class PokemonForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
+    submit = SubmitField('Catch')
 

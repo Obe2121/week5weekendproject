@@ -5,5 +5,18 @@ Welcome
 {% endblock %}
 
 {% block content %}
-<h1>Welcome!</h1>
+<div class="hero-image">
+      <img src="static/images/pokemon-back.jpeg" alt="Single Post">
+              <div class="hero-title">
+              <h2>Welcome to Poke Battle!</h2>
+              <p> Where you can Battle your Friends</p>
+              <div class="hero-btn">
+              {% if current_user.is_authenticated%}
+              <a class="btn btn-primary" href="auth/pokemon" role="button">Catch</a>
+              {% else %}
+              <a class="btn btn-primary" href="auth.register" role="button">Register</a>
+              {% endif %}
+              </div>
+              </div>
+              
 {% endblock %}
